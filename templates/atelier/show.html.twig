@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Atelier{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center fw-bold">Atelier : {{ atelier.nom }}</h1>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-center fw-semibold text-decoration-underline">Description</h5>
+                <div class="border p-3 bg-light text-center">
+                    {{ atelier.description|markdown|raw }}
+                </div>
+            </div>
+        </div>
+        <div>
+          {% if is_granted("ROLE_APPRENTI") %}
+            {% if atelier.apprentis.contains(app.user) %}
+              <form class="d-flex align-items-center justify-content-center" method="post" action="{{ path('app_atelier_desinscription', { id: atelier.id }) }}">
+                  <input type="hidden" name="_token" value="{{ csrf_token('desinscription' ~ atelier.id) }}">
+                  <div class="d-grid gap-2 col-6 mx-auto">
+                      <button class="btn btn-danger btn-lg mt-3" type="submit">Se désinscrire</button>
+                      {% if not app.user.dejaNote(atelier) %}
+                          <a href="{{ path('app_atelier_note', {id: atelier.id}) }}" class="btn btn-primary btn-lg">Noter l'atelier</a>
+                      {% endif %}
+                  </div>
+              </form>
+            {% else %}
+                <form class="d-flex align-items-center justify-content-center" method="post" action="{{ path('app_atelier_inscription', { id: atelier.id }) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('inscription' ~ atelier.id) }}">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                      <button class="btn btn-success btn-lg mt-3" type="submit">S'inscrire</button>
+                    </div>
+                </form>
+            {% endif %}
+          {% else %}
+            {% if is_granted("ROLE_INSTRUCTEUR") %}
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <a class="btn btn-success btn-lg mt-3" href="{{ path('app_atelier_apprentis', { id: atelier.id }) }}">Voir les apprentis inscrits</a>
+                    <a class="btn btn-info btn-lg mt-3" href="{{ path('app_atelier_satisfaction', { id: atelier.id}) }}" >Voir les statistiques de satisfaction</a>
+                </div>
+            {% else %}
+              <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-secondary btn-lg mt-3 disabled">Se connecter pour s'inscrire à l'atelier</button>
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+
+    </div>
+{% endblock %}

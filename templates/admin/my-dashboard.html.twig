@@ -1,0 +1,33 @@
+{% extends '@EasyAdmin/layout.html.twig' %}
+
+{% block main %}
+    <h1>{{ ea.dashboardTitle }}</h1>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 rounded-3 text-center">
+                <div class="card-body p-4">
+                    <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 64px; height: 64px; font-size: 2rem;">
+                        <i class="fa fa-home"></i>
+                    </div>
+                    <h3 class="fs-4 fw-bold">Accueil</h3>
+                    <p class="text-muted">Retourner à la page d'accueil</p>
+                    <a class="btn btn-outline-primary" href="{{ path('app_home') }}">Accueil</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 rounded-3 text-center">
+                <div class="card-body p-4">
+                    <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 64px; height: 64px; font-size: 2rem;">
+                        <i class="fa fa-list"></i>
+                    </div>
+                    <h3 class="fs-4 fw-bold">Ateliers</h3>
+                    <p class="text-muted">Voir la liste des ateliers</p>
+                    <a class="btn btn-outline-primary" href="{{ path('app_atelier_index') }}">Voir les ateliers</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

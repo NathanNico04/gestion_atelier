@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Satisfaction - {{ atelier.nom }}{% endblock %}
+
+{% block body %}
+    <div class="container mt-4 text-center">
+        <h1 class="fw-bold">Notes de satisfaction pour {{ atelier.nom }}</h1>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <div id="chart-data" data-fields='{{ notes|json_encode|e('html_attr') }}' hidden></div>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a href="{{ path('app_atelier_show', {'id': atelier.id}) }}" class="btn btn-secondary">Retour à l'atelier</a>
+        </div>
+    </div>
+{% endblock %}

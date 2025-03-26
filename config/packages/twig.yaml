@@ -1,0 +1,6 @@
+twig:
+  file_name_pattern: "*.twig"
+  form_themes: ["bootstrap_5_layout.html.twig"] # Ajout du thème de formulaire
+when@test:
+  twig:
+    strict_variables: true

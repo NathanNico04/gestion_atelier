@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand btn btn-primary ms-3" href="{{ path('app_home') }}">
+            <i class="bi-house" style="font-size: 1.5rem; color: white;"></i>
+        </a>
+        <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end me-3" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" href="{{ path('app_atelier_index') }}">
+                        <i class="bi-list" style="font-size: 1.5rem; color: white;"></i>
+                        <span class="ms-2">Liste des Ateliers</span>
+                    </a>
+                </li>
+                {% if is_granted('ROLE_INSTRUCTEUR') %}
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" href="{{ path('app_atelier_new') }}">
+                        <i class="bi-plus" style="font-size: 1.5rem; color: white;"></i>
+                        <span class="ms-2">Créer un Atelier</span>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item ms-2">
+                    {% if app.user %}
+                        <a class="nav-link btn btn-primary d-flex align-items-center" href="{{ path('app_logout') }}">
+                            <i class="bi-person-check" style="font-size: 1.5rem; color: white;"></i>
+                            <span class="ms-2">Déconnexion</span>
+                        </a>
+                    {% else %}
+                        <a class="nav-link btn btn-primary d-flex align-items-center" href="{{ path('app_login') }}">
+                            <i class="bi-person-x" style="font-size: 1.5rem; color: white;"></i>
+                            <span class="ms-2">Connexion</span>
+                        </a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

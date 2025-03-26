@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Ateliers{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card shadow-lg border-0 rounded-3">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h1 class="h2 fw-bold text-center w-100">
+                                Mes Ateliers Inscrits
+                            </h1>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">
+                            Total : {{ ateliers|length }}
+                        </span>
+                    </div>
+                    <div class="card-body p-4">
+                        {% if ateliers|length > 0 %}
+                            <ul class="list-group list-group-flush">
+                                {% for atelier in ateliers %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center hover-shadow p-3 border rounded mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar bg-primary rounded-circle text-white me-3 d-flex align-items-center justify-content-center"
+                                                 style="width: 40px; height: 40px;">
+                                                {{ atelier.nom|first|upper }}
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0 fw-bold">{{ atelier.nom }}</h6>
+                                                <small class="text-muted">
+                                                    <i class="fas fa-users me-1"></i>
+                                                    {{ atelier.apprentis|length }} apprentis
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <a href="{{ path('app_atelier_show', { id: atelier.id }) }}"
+                                           class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-eye me-1"></i>
+                                            Voir détails
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <div class="alert alert-info d-flex align-items-center" role="alert">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <div>
+                                    Vous n'êtes inscrit à aucun atelier pour le moment.
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
