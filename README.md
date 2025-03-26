@@ -6,7 +6,6 @@ Ce projet réalisé en groupe dans le cadre d'un contrôle continu, est un site 
 - **Gestion des utilisateurs** : Inscription, connexion, rôles (admin, instructeur, apprenti)
 - **Gestion des ateliers** : Création, modification, suppression, affichage des ateliers disponibles
 - **Authentification sécurisée** : Implémentation des rôles et gestion des accès
-- **Pagination et satisfaction** : Pagination des ateliers, système de notation et de feedback
 - **Interface utilisateur responsive** : Utilisation de Bootstrap et personnalisation des templates
 
 ## Technologies utilisées :
